@@ -21,18 +21,17 @@ jobs:
     - uses: azure/docker-login@v1
       with:
         login-server: ghcr.io/
-        username: ${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_224D30D2206F4BD79D9A02BAA87EFCE8 }}
-        password: ${{ secrets.AZUREAPPSERVICE_CONTAINERPASSWORD_B7E335F75B4A442E8133AD39D11B87B8 }}
+        username: ${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_AE8F38AB0F50411BB9A793F87008F276 }}
+        password: ${{ secrets.AZUREAPPSERVICE_CONTAINERPASSWORD_334D04CCE6004C7EA859E40C8984A9BF }}
 
     - run: |
-        cd EduTaskHub.FrontEnd
-        docker build . -t ghcr.io/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_224D30D2206F4BD79D9A02BAA87EFCE8 }}/edutaskhub:${{ github.sha }}
-        docker push ghcr.io/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_224D30D2206F4BD79D9A02BAA87EFCE8 }}/edutaskhub:${{ github.sha }}
+        docker build . -t ghcr.io/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_AE8F38AB0F50411BB9A793F87008F276 }}/edutaskhub:${{ github.sha }}
+        docker push ghcr.io/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_AE8F38AB0F50411BB9A793F87008F276 }}/edutaskhub:${{ github.sha }}
 
     - uses: azure/webapps-deploy@v2
       with:
         app-name: jadestestedutaskhub
         slot-name: Production
-        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3F6AA61CB35D43ECA538E95857BCF3FB }}
-        images: ghcr.io/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_224D30D2206F4BD79D9A02BAA87EFCE8 }}/edutaskhub:${{ github.sha }}
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_51605F672F2742CA84B1F75B180803CC }}
+        images: ghcr.io/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_AE8F38AB0F50411BB9A793F87008F276 }}/edutaskhub:${{ github.sha }}
 

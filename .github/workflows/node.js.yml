@@ -12,10 +12,10 @@ on:
 jobs:
   build:
 
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./client
+    # defaults: no longer needed - specified elsewhere
+    #   run:
+    #     shell: bash
+    #     working-directory: ./client
 
     runs-on: ubuntu-latest
 
@@ -32,9 +32,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        cache-dependency-path: 'client/package-lock.json'
+        cache-dependency-path: 'client/package-lock.json' # Needs package-lock -> check compatibility: see if the packages are compatible with the node version I'm using
+
     # - run: cd client # trying to cd into client to help find package-lock.json
-    - name: run and build tests
+
+    - name: run and build tests # defining the directory here -> find 'client'
       working-directory: ./client
       run: | 
         npm ci

@@ -12,10 +12,10 @@ on:
 jobs:
   build:
 
-    # defaults: no longer needed - specified elsewhere
-    #   run:
-    #     shell: bash
-    #     working-directory: ./client
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./client
 
     runs-on: ubuntu-latest
 
@@ -37,13 +37,14 @@ jobs:
     # - run: cd client # trying to cd into client to help find package-lock.json
 
     - name: run and build tests # defining the directory here -> find 'client'
-      working-directory: ./client
+      # working-directory: ./client
       run: | 
         npm ci
         npm run build --if-present
         npm test
 
     - name: Deploy with gh-pages
+      # working-directory: ./client
       run: |
         git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
         npm run deploy -- -u "github-actions-bot <support+actions@github.com>"

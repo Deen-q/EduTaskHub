@@ -32,7 +32,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    #     cache-dependency-path: 'client/package-lock.json'
+        cache-dependency-path: 'client/package-lock.json'
     # - run: cd client # trying to cd into client to help find package-lock.json
     - name: run and build tests
       working-directory: ./client

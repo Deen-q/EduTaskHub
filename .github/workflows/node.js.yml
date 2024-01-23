@@ -37,7 +37,7 @@ jobs:
     # - run: cd client # trying to cd into client to help find package-lock.json
 
     - name: run and build tests # defining the directory here -> find 'client'
-      # working-directory: ./client
+      # working-directory: ./client --> This is commented because the directory is already set on line 15
       run: | 
         npm ci
         npm run build --if-present
